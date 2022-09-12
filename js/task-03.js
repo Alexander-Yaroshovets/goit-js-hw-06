@@ -13,13 +13,12 @@ const images = [
   },
 ];
 const galleryByClass = document.querySelector(".gallery");
-const imagesEl = images.map((option) => {
-  galleryByClass.insertAdjacentHTML(
-    `beforeend`,
-    `<li> <img src = ${option.url} alt = ${option.alt} >  </li>`
-  );
+const imagesEl = images.map(({ url, alt }) => {
+  return `<li> <img src = ${url} alt = ${alt} > </li>`;
 });
 
+const markup = imagesEl.join("");
+galleryByClass.insertAdjacentHTML("beforeend", markup);
 const galleryItemBytag = document.querySelectorAll("li");
 
 galleryItemBytag.forEach((item) => {
