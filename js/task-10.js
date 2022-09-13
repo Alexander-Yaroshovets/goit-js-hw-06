@@ -14,7 +14,7 @@ let boxHeight = parseInt(elem.style.height);
 
 const handleInput = (event) => {
   const inputValue = event.target.value;
-
+  const elemArray = [];
   for (let i = 1; i <= inputValue; i += 1) {
     const elem = document.createElement("div");
     boxWidth += 10;
@@ -22,18 +22,20 @@ const handleInput = (event) => {
     elem.style.width = `${boxWidth.toString()}px`;
     elem.style.height = `${boxHeight.toString()}px`;
     elem.style.backgroundColor = getRandomHexColor();
-
-    const createBoxes = () => {
-      boxesEl.append(elem);
-    };
-
-    const destroyBoxes = () => {
-      location.reload();
-    };
-
-    createButtonEl.addEventListener("click", createBoxes);
-    destroyButtonEl.addEventListener("click", destroyBoxes);
+    elemArray.push(elem);
   }
+  console.log(elemArray);
+
+  const createBoxes = () => {
+    boxesEl.append(...elemArray);
+  };
+
+  const destroyBoxes = () => {
+    location.reload();
+  };
+
+  createButtonEl.addEventListener("click", createBoxes);
+  destroyButtonEl.addEventListener("click", destroyBoxes);
 };
 
 inputElByTag.addEventListener("change", handleInput);
